@@ -1,34 +1,26 @@
-from collections import defaultdict
-print
+def add_edge(graph, u, v):
+    graph[u].append(v)
 
-class Graph:
+def dfs(graph, start):
+    visited = set([start])
+    stack = [start]
 
-    def __init__(self):
-        self.graph = defaultdict(list)
+    while stack:
+        node = stack.pop()
+        print(node, end=" ")
 
-    def addEdge(self,u,v):
-        self.graph[u].append(v)
+        for neighbour in graph[node]:
+            if neighbour not in visited:
+                stack.append(neighbour)
+                visited.add(neighbour)
 
-    def DFSUtil(self, v, visited):
+graph = {i: [] for i in range(4)}
+add_edge(graph, 0, 1)
+add_edge(graph, 0, 2)
+add_edge(graph, 1, 2)
+add_edge(graph, 2, 0)
+add_edge(graph, 2, 3)
+add_edge(graph, 3, 3)
 
-        visited[v]= True
-        print(v, end="\n")
-
-        for i in self.graph[v]:
-            if visited[i] == False:
-                self.DFSUtil(i, visited)
-
-    def DFS(self, v):
-        visited=[False]*(len(self.graph))
-        self.DFSUtil(v, visited)
-    
-g = Graph()
-g.addEdge(0, 1)
-g.addEdge(0, 2)
-g.addEdge(1, 2)
-g.addEdge(2, 0)
-g.addEdge(2, 3)
-g.addEdge(3, 3)
-
-print("Following is Depth First Traversal")
-g.DFS(2)
+print("Following is Depth First Traversal (starting from vertex 2)")
+dfs(graph, 2)

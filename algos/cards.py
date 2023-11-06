@@ -1,7 +1,7 @@
 import itertools, random
 
 # it create a list of tuples
-deck = list(itertools.product(range(1,14),['SPADE','HEART','DIAMOND','CLUB']))
+deck = list(itertools.product(range(0,13),['SPADE','HEART','DIAMOND','CLUB']))
 
 random.shuffle(deck) #shuffle
 print("Your Cards are:")
